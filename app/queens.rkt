@@ -1,9 +1,6 @@
 #lang racket
-(require racket/include);
-(include "../utils/flatmap.rkt")
-
-
-
+(require "../utils/flatmap.rkt")
+(require "../utils/enumerate-interval.rkt")
 
 (define (queens board-size)
   (define (queen-cols k)
@@ -18,3 +15,12 @@
                  (enumerate-interval 1 board-size)))
           (queen-cols (- k 1))))))
   (queen-cols board-size))
+  
+
+(lambda (rest-of-queens)
+            (map (lambda (new-rows)
+                   (adjoin-position new-row k rest-of-queens))
+                 (enumerate-interval 1 board-size)))
+
+(lambda (new-rows)
+                   (adjoin-position new-row k rest-of-queens))
