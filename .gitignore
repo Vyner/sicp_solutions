@@ -3,3 +3,8 @@
 *.bak
 *.1
 *.2
+drracket
+compiled
+*.*~
+*.*#
+.DS_Store
