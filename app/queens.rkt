@@ -30,14 +30,49 @@
 (define (adjoin-position n k rest-of-queens)
   (cons (list n k) rest-of-queens))
 
-(define empty-board (list(list)))
+(define empty-board (list))
+
+;(define (safe? k positions)
+;  (if
+;   (empty? positions)
+;      true
+;      (not (has-repeat-fst-number
+;            (get-left-value-in-position positions)))))
 
 (define (safe? k positions)
-  (if
-   (empty? positions)
+  (if (empty? positions)
       true
-      (not (has-repeat-fst-number
-            (get-left-value-in-position positions)))))
+      (safe-position? (first positions) (rest positions))))
+
+(define (safe-position? position org-list)
+  (if (empty? org-list)
+      true
+      (if (safe-point position (first org-list))
+          (safe-position? position (rest org-list))
+          false)))
+
+
+
+(define (getx position)
+  (car position))
+
+(define (gety position)
+  (car (cdr position)))
+
+
+
+(define (safe-point a b)
+  (if
+   (= (getx a) (getx b))
+      false
+      (if (= (gety a) (gety b))
+          false
+          (if (= (- (getx a) (gety a)) (- (getx b) (gety b)))
+              false
+              true))))
+
+
+                    
 
 (define (has-repeat-fst-number number-list)
   (if (= (length number-list) 0)
@@ -79,7 +114,5 @@
                  (enumerate-interval 1 8)))
           empty-board))
   )
-
-      
-(queens 2)
+(queens 4)
 ;(((1,1), (2,2), (3,3)) , ((1, 2), (2, 3), (3, 1)), ((1, 3), (2, 1), (3, 2)))
