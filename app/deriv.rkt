@@ -16,7 +16,10 @@
                           (multiplicand exp))))
          ((exponentiation? exp)
           (make-product (make-product (exponent exp)
-                                      (make-exponentiation (base exp) (- (exponent exp) 1)))
+                                      (make-exponentiation (base exp)
+                                                           (if (number? (exponent exp))
+                                                               (- (exponent exp) 1)
+                                                               (make-sum (exponent exp) '-1)))) ;; todo fixme
                         (deriv (base exp) var)))
                        
          (else 
