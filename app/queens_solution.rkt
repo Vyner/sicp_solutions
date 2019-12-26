@@ -66,4 +66,6 @@
                      new-row k rest-of-queens)) 
                   (enumerate-interval 1 board-size))) 
            (queen-cols (- k 1)))))) 
-   (queen-cols board-size)) 
+   (queen-cols board-size))
+
+(queens 4)

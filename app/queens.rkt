@@ -67,9 +67,11 @@
       false
       (if (= (gety a) (gety b))
           false
-          (if (= (- (getx a) (gety a)) (- (getx b) (gety b)))
+          (if (=  (- (getx a) (gety a))  (- (getx b) (gety b)))
               false
-              true))))
+              (if (= (+ (getx a) (gety a)) (+ (getx b) (gety b)))
+                  false
+                  true)))))
 
 
                     
@@ -114,5 +116,5 @@
                  (enumerate-interval 1 8)))
           empty-board))
   )
-(queens 4)
+(length (queens 8))
 ;(((1,1), (2,2), (3,3)) , ((1, 2), (2, 3), (3, 1)), ((1, 3), (2, 1), (3, 2)))
